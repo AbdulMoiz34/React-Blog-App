@@ -3,12 +3,10 @@ import { Signup } from "../pages"
 
 const Router = () => {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/signup" element={<Signup />} />
-            </Routes>
-        </BrowserRouter>
+        <Routes>
+            <Route path="/signup" element={<Signup />} />
+        </Routes>
     )
 }
 
-export default Router
+export default Router;
