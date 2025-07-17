@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+header {
+  height: 45px;
+  justify-content: center;
+  box-shadow: none !important;
+}
+
+.ant-form {
+  padding: 20px;
+  margin: 3rem auto;
+  width: 420px;
+}
