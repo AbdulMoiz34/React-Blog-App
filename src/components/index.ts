@@ -3,5 +3,6 @@ import Title from "./Title";
 import SignupForm from "./SignupForm";
 import MyInput from "./Input";
 import LoginForm from "./LoginForm";
+import Loader from "./Loader";
 
-export { Header, Title, MyInput, SignupForm, LoginForm };
+export { Header, Title, MyInput, SignupForm, LoginForm, Loader };

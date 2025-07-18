@@ -1,14 +1,18 @@
 import { Toaster } from 'react-hot-toast';
 import './App.css'
-import { Header } from './components';
+import { Header, Loader } from './components';
 import Router from './AppRouter/Router';
 import AuthContext from './context/AuthContext/AuthContext';
-import { useState } from 'react';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from './config/firebase';
+import { useEffect, useState } from 'react';
+import { auth, onAuthStateChanged, getDoc, doc, db } from './config/firebase';
 
 function App() {
-  const [user, setUser] = useState<null | object>(null);
+  interface User {
+    email: string | null;
+    userName: string | null;
+  }
+
+  const [user, setUser] = useState<User | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -20,18 +24,40 @@ function App() {
     loading,
     setLoading
   };
-  onAuthStateChanged(auth, (currentUser) => {
-    if (currentUser) {
-      setUser(currentUser);
-      setIsAuthenticated(true);
-    } else {
-      setUser(null);
-      setIsAuthenticated(false);
-    }
-    setLoading(false);
-  });
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      if (currentUser) {
+        try {
+          console.log(currentUser.uid)
+          const docSnap = await getDoc(doc(db, "users", currentUser.uid));
+          if (docSnap.exists()) {
+            const userData = docSnap.data();
+            setUser({ email: userData.email || null, userName: userData.userName || null });
+            setIsAuthenticated(true);
+          } else {
+            setUser(null);
+            setIsAuthenticated(false);
+          }
+        } catch (err) {
+          console.error("Error fetching user data:", err);
+        }
+      } else {
+        setUser(null);
+        setIsAuthenticated(false);
+      }
+      setLoading(false);
+    });
+    return () => unsubscribe();
+  }, []);
 
 
+  console.log("Loading user state...");
+  if (loading) {
+    return <div className="flex justify-center items-center h-screen">
+      <Loader />
+    </div>;
+  }
   return (
     <>
       <AuthContext value={authContextValue}>

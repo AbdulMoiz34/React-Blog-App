@@ -1,9 +1,9 @@
 import { Form, Input, Button } from "antd";
 import { useForm, Controller } from "react-hook-form";
 import { useState } from "react";
-import { addDoc, auth, collection, db, createUserWithEmailAndPassword } from "../../config/firebase";
+import { setDoc, auth, doc, db, createUserWithEmailAndPassword } from "../../config/firebase";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface SignupFormInputs {
     firstName: string;
@@ -29,10 +29,11 @@ export default function SignupForm() {
     const onSubmit = async (data: SignupFormInputs) => {
         try {
             setLoading(true);
-            await createUserWithEmailAndPassword(auth, data.email, data.password);
-            await addDoc(collection(db, "users"), {
-                firstName: data.firstName,
-                lastName: data.lastName,
+
+            const { user } = await createUserWithEmailAndPassword(auth, data.email, data.password);
+
+            await setDoc(doc(db, "users", user.uid), {
+                userName: `${data.firstName} ${data.lastName}`,
                 email: data.email
             });
             toast.success("User created successfully!");
@@ -145,6 +146,10 @@ export default function SignupForm() {
                     Sign Up
                 </Button>
             </Form.Item>
+            <div className="text-center text-sm">
+                <span className=" text-gray-700">Already have an account? </span>
+                <Link to="/login" className="text-blue-400 ml-1 hover:underline">Login Now</Link>
+            </div>
         </Form>
     );
 }

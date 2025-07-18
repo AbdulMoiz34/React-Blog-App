@@ -12,6 +12,12 @@ header {
   width: 420px;
 }
 
+body,
+html {
+  width: 100%;
+  height: 100%;
+}
+
 @media screen and (max-width: 768px) {
   .ant-form {
     width: 95%;

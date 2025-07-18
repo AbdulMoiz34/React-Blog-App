@@ -3,7 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import { useState } from "react";
 import { auth, signInWithEmailAndPassword } from "../../config/firebase";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface LoginFormInputs {
     email: string;
@@ -84,6 +84,10 @@ const LoginForm = () => {
                     Login
                 </Button>
             </Form.Item>
+            <div className="text-center text-sm">
+                <span className=" text-gray-700">Don't have an account?</span>
+                <Link to="/signup" className="text-blue-400 ml-1">Signup Now</Link>
+            </div>
         </Form>
     );
 }

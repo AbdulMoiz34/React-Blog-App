@@ -1,11 +1,24 @@
 import { createContext } from "react";
 
-const AuthContext = createContext({
-    user: null as null | object,
+interface User {
+    email: string | null;
+    userName: string | null;
+}
+
+interface AuthContextType {
+    user: User | null;
+    loading: boolean;
+    setUser: (user: User | null) => void;
+    isAuthenticated: boolean;
+    setIsAuthenticated: (isAuthenticated: boolean) => void;
+}
+
+const AuthContext = createContext<AuthContextType>({
+    user: null,
     loading: false,
-    setUser: (user: null | object) => { },
+    setUser: () => { },
     isAuthenticated: false,
-    setIsAuthenticated: (isAuthenticated: boolean) => { }
+    setIsAuthenticated: () => { }
 });
 
 export default AuthContext;
