@@ -4,9 +4,7 @@ const Signup = () => {
     return (
         <>
             <Title text="Sign Up" />
-            <div>
-                <SignupForm />
-            </div>
+            <SignupForm />
         </>
     )
 }

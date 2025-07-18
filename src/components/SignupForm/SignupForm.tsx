@@ -1,7 +1,7 @@
 import { Form, Input, Button } from "antd";
 import { useForm, Controller } from "react-hook-form";
 import { useState } from "react";
-import { auth, createUserWithEmailAndPassword } from "../../config/firebase";
+import { addDoc, auth, collection, db, createUserWithEmailAndPassword } from "../../config/firebase";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
@@ -27,14 +27,18 @@ export default function SignupForm() {
     const navigate = useNavigate();
 
     const onSubmit = async (data: SignupFormInputs) => {
-        console.log("Form Data:", data);
         try {
             setLoading(true);
             await createUserWithEmailAndPassword(auth, data.email, data.password);
+            await addDoc(collection(db, "users"), {
+                firstName: data.firstName,
+                lastName: data.lastName,
+                email: data.email
+            });
             toast.success("User created successfully!");
             setTimeout(() => {
                 navigate("/");
-            }, 1000);
+            }, 700);
         } catch (err) {
             console.error("Error creating user:", err);
             toast.error("Failed to create user");
@@ -115,7 +119,7 @@ export default function SignupForm() {
                             message: "Must include uppercase and lowercase letters",
                         },
                     }}
-                    render={({ field }) => <Input.Password {...field} placeholder="Password" />} />
+                    render={({ field }) => <Input.Password  {...field} placeholder="Password" />} />
             </Form.Item>
 
             <Form.Item

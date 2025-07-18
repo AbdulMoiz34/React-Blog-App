@@ -11,3 +11,10 @@ header {
   margin: 3rem auto;
   width: 420px;
 }
+
+@media screen and (max-width: 768px) {
+  .ant-form {
+    width: 95%;
+    padding: 10px;
+  }
+}
