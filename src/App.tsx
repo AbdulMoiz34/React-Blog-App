@@ -10,6 +10,7 @@ function App() {
   interface User {
     email: string | null;
     userName: string | null;
+    uid: string | null;
   }
 
   const [user, setUser] = useState<User | null>(null);
@@ -29,11 +30,10 @@ function App() {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
         try {
-          console.log(currentUser.uid)
           const docSnap = await getDoc(doc(db, "users", currentUser.uid));
           if (docSnap.exists()) {
             const userData = docSnap.data();
-            setUser({ email: userData.email || null, userName: userData.userName || null });
+            setUser({ email: userData.email || null, userName: userData.userName || null, uid: currentUser.uid });
             setIsAuthenticated(true);
           } else {
             setUser(null);

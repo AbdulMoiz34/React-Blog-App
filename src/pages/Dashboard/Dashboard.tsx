@@ -1,6 +1,11 @@
+import { PublishBlogForm, Title } from "../../components";
+
 const Dashboard = () => {
     return (
-        <div>Dashboard</div>
+        <>
+            <Title text="Dashboard" />
+            <PublishBlogForm />
+        </>
     )
 }
 
