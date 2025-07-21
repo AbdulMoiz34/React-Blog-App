@@ -27,7 +27,7 @@ const LoginForm = () => {
             await signInWithEmailAndPassword(auth, data.email, data.password);
             toast.success("Logged in successfully!");
             setTimeout(() => {
-                navigate("/");
+                navigate("/dashboard");
             }, 700);
         } catch (err) {
             console.error("Error logging in:", err);

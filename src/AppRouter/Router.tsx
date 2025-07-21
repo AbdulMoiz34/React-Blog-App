@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { Dashboard, Login, Signup } from "../pages";
+import { Dashboard, Home, Login, Signup, UserBlogsPage } from "../pages";
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext/";
 import ProtectedRoute from "./ProtectedRoute";
@@ -11,14 +11,15 @@ const Router = () => {
     return (
         <>
             <Routes>
-                <Route path="/signup" element={isAuthenticated ? <Navigate to={"/"} /> : <Signup />} />
-                <Route path="/login" element={isAuthenticated ? <Navigate to={"/"} /> : <Login />} />
-                <Route path="/" element={
+                <Route path="/signup" element={isAuthenticated ? <Navigate to={"/dashboard"} /> : <Signup />} />
+                <Route path="/login" element={isAuthenticated ? <Navigate to={"/dashboard"} /> : <Login />} />
+                <Route path="/dashboard" element={
                     <ProtectedRoute>
                         <Dashboard />
                     </ProtectedRoute>
-                }>
-                </Route>
+                } />
+                <Route path="/" element={<Home />} />
+                <Route path="/blogs/:userId" element={<UserBlogsPage />} />
                 <Route path="*" element={<div>404 page</div>} />
             </Routes>
 

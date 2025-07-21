@@ -29,6 +29,7 @@ function App() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
+        console.log(currentUser.uid)
         try {
           const docSnap = await getDoc(doc(db, "users", currentUser.uid));
           if (docSnap.exists()) {

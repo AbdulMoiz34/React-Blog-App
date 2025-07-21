@@ -6,5 +6,6 @@ import LoginForm from "./LoginForm";
 import Loader from "./Loader";
 import PublishBlogForm from "./PublishBlogForm";
 import BlogCard from "./BlogCard";
+import BlogsList from "./BlogsList";
 
-export { Header, Title, MyInput, SignupForm, LoginForm, Loader, PublishBlogForm, BlogCard };
+export { Header, Title, MyInput, SignupForm, LoginForm, Loader, PublishBlogForm, BlogCard, BlogsList };

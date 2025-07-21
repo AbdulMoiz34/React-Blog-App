@@ -6,8 +6,8 @@ interface TitleProps {
 
 const Title = ({ text }: TitleProps) => {
 
-    return <div className='bg-[#F8F9FA] py-3'>
-        <Typography variant='h4' ml={3} textAlign={'center'}>
+    return <div className='bg-[#F8F9FA] py-6'>
+        <Typography variant='h4' ml={3} textAlign={'center'} fontFamily={'monospace'}>
             {text}
         </Typography>
     </div>

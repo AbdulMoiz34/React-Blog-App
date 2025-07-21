@@ -24,6 +24,8 @@ export default function Header() {
         }
     }
 
+    const textTransform: {} = { textTransform: "capitalize", color: "#fff", padding: "2px 16px" };
+
     return (
         <>
             <Box sx={{ flexGrow: 0 }}>
@@ -33,13 +35,16 @@ export default function Header() {
                             Personal Blogging App
                         </Typography>
                         {user ? (
-                            <div className='flex justify-center items-center gap-4'>
+                            <div className='flex justify-center items-center gap-2'>
                                 <NavLink to="./profile">
-                                    <Button color='primary' className='shadow-none' variant='contained' size='small'>
+                                    <Button className='shadow-sm' style={{ ...textTransform, border: "1px solid darkblue" }} size='small'>
                                         {user.userName}
                                     </Button>
                                 </NavLink>
-                                <Button color='inherit' onClick={logout}>Logout</Button>
+                                <NavLink to={location.pathname == "/dashboard" ? "/" : "/dashboard"}>
+                                    <Button color='inherit' style={textTransform}>{(location.pathname == "/dashboard" ? "Home" : "Dashboard")}</Button>
+                                </NavLink>
+                                <Button color='inherit' onClick={logout} style={textTransform}>Logout</Button>
                             </div>) :
                             <NavLink to={location.pathname == "/login" ? "signup" : "login"}>{(location.pathname == "/login") ? "SignUp" : "Login"}</NavLink>}
                     </Toolbar>
