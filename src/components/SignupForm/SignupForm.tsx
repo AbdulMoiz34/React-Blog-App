@@ -34,9 +34,12 @@ export default function SignupForm() {
 
             await setDoc(doc(db, "users", user.uid), {
                 userName: `${data.firstName} ${data.lastName}`,
-                email: data.email
+                email: data.email,
+                userImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiMobM3dnjg-13GqCOo9EtioNfZ-FXLiU-Ag&s"
             });
+
             toast.success("User created successfully!");
+
             setTimeout(() => {
                 navigate("/dashboard");
             }, 700);

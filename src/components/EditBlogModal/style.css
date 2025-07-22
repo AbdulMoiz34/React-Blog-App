@@ -1,0 +1,9 @@
+.edit.ant-form {
+    width: 90% !important;
+    padding: 0px 10px !important;
+    &>h2 {
+        padding: 0px;
+        font-size: 25px;
+        font-weight: bold;
+    }
+}

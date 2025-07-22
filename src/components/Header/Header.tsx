@@ -10,6 +10,7 @@ import { signOut, auth } from "../../config/firebase";
 import toast from 'react-hot-toast';
 
 export default function Header() {
+
     const { user, setUser } = useContext(AuthContext);
     const location = useLocation();
 
@@ -24,7 +25,11 @@ export default function Header() {
         }
     }
 
-    const textTransform: {} = { textTransform: "capitalize", color: "#fff", padding: "2px 16px" };
+    const textTransform: {} = {
+        textTransform: "capitalize",
+        color: "#fff",
+        padding: "2px 16px"
+    };
 
     return (
         <>

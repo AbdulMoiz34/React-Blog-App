@@ -12,6 +12,7 @@ interface Blogs {
     content: string
     publishedAt: Timestamp;
     id: string;
+    userImage: string;
 }
 
 const Dashboard = () => {
@@ -59,7 +60,8 @@ const Dashboard = () => {
                     <div className="mt-2 w-full flex flex-col gap-4">
                         {loading ?
                             (<div className="flex justify-center"><Loader /></div>)
-                            : (blogs?.length == 0) ? <div className="text-center">Blogs are not available</div> : <BlogsList page="myblogs" blogs={blogs} />}
+                            : (blogs?.length == 0) ? <div className="text-center">Blogs are not available</div> :
+                                <BlogsList page="myblogs" blogs={blogs} />}
                     </div>
                 </div>
             </div>

@@ -14,7 +14,8 @@ import {
     updateDoc,
     orderBy,
     onSnapshot,
-    getDocs
+    getDocs,
+    Timestamp
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -50,5 +51,6 @@ export {
     updateDoc,
     orderBy,
     onSnapshot,
-    getDocs
+    getDocs,
+    Timestamp
 }

@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { Title, Loader } from "../../components";
 import { Typography } from "antd";
-import { db, getDocs, collection, orderBy, query } from "../../config/firebase";
+import { db, getDocs, collection, orderBy, query , Timestamp } from "../../config/firebase";
 import { BlogsList } from "../../components";
-import { Timestamp } from "firebase/firestore";
 
 interface Blogs {
     userId: string;
@@ -12,6 +11,7 @@ interface Blogs {
     content: string
     publishedAt: Timestamp;
     id: string;
+    userImage: string;
 }
 
 const Home = () => {

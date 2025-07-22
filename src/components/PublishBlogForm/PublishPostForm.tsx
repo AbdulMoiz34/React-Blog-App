@@ -17,6 +17,7 @@ const PublishBlogForm = () => {
 
     const {
         handleSubmit,
+        reset,
         control,
         formState: { errors },
     } = useForm<PublishBlogFormInputs>();
@@ -24,9 +25,18 @@ const PublishBlogForm = () => {
     const onSubmit = async (data: PublishBlogFormInputs) => {
         try {
             setLoading(true);
-            await addDoc(collection(db, "blogs"), { ...data, userId: user?.uid, userName: user?.userName, publishedAt: serverTimestamp() });
+            await addDoc(collection(db, "blogs"), {
+                ...data,
+                userId: user?.uid,
+                userName: user?.userName,
+                userImage: user?.userImage,
+                publishedAt: serverTimestamp()
+            });
             toast.success("Blog published successfully");
+            
+            reset();
         } catch (err) {
+            console.log(err);
             toast.error("Error publishing blog");
         } finally {
             setLoading(false);
@@ -52,6 +62,7 @@ const PublishBlogForm = () => {
                         <Input {...field} placeholder="Post Title" count={{ show: true, max: 50 }} />
                     )}
                 />
+                
             </Form.Item>
 
             <Form.Item

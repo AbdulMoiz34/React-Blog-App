@@ -6,7 +6,6 @@ import { orderBy, Timestamp } from "firebase/firestore";
 import { getDocs, collection, db, query, where, getDoc, doc } from "../../config/firebase";
 import { Loader, BlogsList } from "../../components";
 import toast from "react-hot-toast";
-import Image from "../../assets/2a700436ad923e69a8ff7debe812a1b55f9e2cca.jpg";
 
 interface Blogs {
     userId: string;
@@ -15,11 +14,13 @@ interface Blogs {
     content: string
     publishedAt: Timestamp;
     id: string;
+    userImage: string;
 }
 
 interface User {
     email: string;
     userName: string;
+    userImage: string;
 }
 
 const UserBlogsPage = () => {
@@ -60,9 +61,10 @@ const UserBlogsPage = () => {
         getBlogs();
     }, []);
 
+    console.log(user);
     return (
         <>
-            <div className='bg-[#F8F9FA] py-4'>
+            <div className='bg-white py-4'>
                 <Button onClick={navigateHandler}>
                     <Typography variant='h4' ml={3} fontFamily={'monospace'}>
                         &lt;Back to all blogs
@@ -81,10 +83,10 @@ const UserBlogsPage = () => {
                                     <BlogsList blogs={blogs} />
                                 </>}
                     </div>
-                    {!loading && <div className="flex flex-col items-end mt-14">
-                        <a href={`mailto:${user?.email}`} className="text-xl">{user?.email}</a>
-                        <Typography variant="h4" color="#1976D2" className="font-extrabold">{(user?.userName && user?.userName?.length >= 10) ? user.userName.slice(0, 10) + "..." : user?.userName}</Typography>
-                        <img src={Image} alt="" className="w-72 rounded-lg" />
+                    {!loading && <div className="flex flex-col items-end mt-14 gap-2">
+                        <a href={`mailto:${user?.email}`} className="text-xl underline">{user?.email}</a>
+                        <Typography variant="h4" color="#1976D2" className="font-extrabold capitalize">{(user?.userName && user?.userName?.length > 10) ? user.userName.slice(0, 10) + "..." : user?.userName}</Typography>
+                        <img src={user?.userImage} alt="" className="w-72 rounded-lg border-1 border-[#c7c7c7]" />
                     </div>}
                 </div>
             </div>

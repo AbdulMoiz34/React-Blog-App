@@ -12,6 +12,7 @@ interface LoginFormInputs {
 
 const LoginForm = () => {
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     const {
         handleSubmit,
@@ -19,10 +20,9 @@ const LoginForm = () => {
         formState: { errors },
     } = useForm<LoginFormInputs>();
 
-    const navigate = useNavigate();
-
     const onSubmit = async (data: LoginFormInputs) => {
         setLoading(true);
+
         try {
             await signInWithEmailAndPassword(auth, data.email, data.password);
             toast.success("Logged in successfully!");
@@ -36,6 +36,7 @@ const LoginForm = () => {
             setLoading(false);
         }
     };
+    
     return (
         <Form
             layout="vertical"

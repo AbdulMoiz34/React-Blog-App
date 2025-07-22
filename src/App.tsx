@@ -5,13 +5,9 @@ import Router from './AppRouter/Router';
 import AuthContext from './context/AuthContext/AuthContext';
 import { useEffect, useState } from 'react';
 import { auth, onAuthStateChanged, getDoc, doc, db } from './config/firebase';
+import type { User } from "./context/AuthContext/AuthContext";
 
 function App() {
-  interface User {
-    email: string | null;
-    userName: string | null;
-    uid: string | null;
-  }
 
   const [user, setUser] = useState<User | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -28,13 +24,19 @@ function App() {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+
       if (currentUser) {
-        console.log(currentUser.uid)
         try {
           const docSnap = await getDoc(doc(db, "users", currentUser.uid));
           if (docSnap.exists()) {
             const userData = docSnap.data();
-            setUser({ email: userData.email || null, userName: userData.userName || null, uid: currentUser.uid });
+            setUser({
+              email: userData.email || null,
+              userName: userData.userName || null,
+              uid: currentUser.uid,
+              userImage: userData.userImage
+            });
+
             setIsAuthenticated(true);
           } else {
             setUser(null);

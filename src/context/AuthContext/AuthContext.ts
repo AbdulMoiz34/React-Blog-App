@@ -1,11 +1,11 @@
 import { createContext } from "react";
 
-interface User {
+export interface User {
     email: string | null;
     userName: string | null;
     uid: string | null;
+    userImage: string | null;
 }
-
 interface AuthContextType {
     user: User | null;
     loading: boolean;

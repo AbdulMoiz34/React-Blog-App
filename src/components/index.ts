@@ -7,5 +7,7 @@ import Loader from "./Loader";
 import PublishBlogForm from "./PublishBlogForm";
 import BlogCard from "./BlogCard";
 import BlogsList from "./BlogsList";
+import EditBlogModal from "./EditBlogModal";
+import EditNameModal from "./EditNameModal";
 
-export { Header, Title, MyInput, SignupForm, LoginForm, Loader, PublishBlogForm, BlogCard, BlogsList };
+export { Header, Title, MyInput, SignupForm, LoginForm, Loader, PublishBlogForm, BlogCard, BlogsList, EditBlogModal, EditNameModal };

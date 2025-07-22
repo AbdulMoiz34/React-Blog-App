@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { Dashboard, Home, Login, Signup, UserBlogsPage } from "../pages";
+import { Dashboard, Home, Login, NotFound, Profile, Signup, UserBlogsPage } from "../pages";
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext/";
 import ProtectedRoute from "./ProtectedRoute";
@@ -20,7 +20,12 @@ const Router = () => {
                 } />
                 <Route path="/" element={<Home />} />
                 <Route path="/blogs/:userId" element={<UserBlogsPage />} />
-                <Route path="*" element={<div>404 page</div>} />
+                <Route path="*" element={<NotFound />} />
+                <Route path="/profile" element={
+                    <ProtectedRoute>
+                        <Profile />
+                    </ProtectedRoute>
+                } />
             </Routes>
 
         </>
