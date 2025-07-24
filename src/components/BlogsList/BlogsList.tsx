@@ -33,6 +33,7 @@ const BlogsList = ({ blogs, page }: BlogsProps) => {
             content: "Do you really want to delet this blog?",
             okText: "yes, delete it",
             cancelText: "No",
+            centered: true,
             onOk: async () => {
                 try {
                     await deleteDoc(doc(db, "blogs", id));
@@ -68,7 +69,6 @@ const BlogsList = ({ blogs, page }: BlogsProps) => {
         }
     }
 
-    console.log(blogId);
     return (
         <>
             <div className="mt-2 w-full flex flex-col gap-4">

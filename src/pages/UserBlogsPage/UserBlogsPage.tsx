@@ -61,7 +61,6 @@ const UserBlogsPage = () => {
         getBlogs();
     }, []);
 
-    console.log(user);
     return (
         <>
             <div className='bg-white py-4'>
@@ -72,21 +71,21 @@ const UserBlogsPage = () => {
                 </Button>
             </div>
             <div className="flex justify-center bg-[#F8F9FA]">
-                <div className="w-[90%] flex gap-8 mt-4 justify-start items-start">
-                    <div className="flex flex-col w-full">
+                <div className="w-[90%] flex gap-8 mt-4 justify-start flex-col-reverse items-center md:items-start md:flex-row">
+                    <div className="flex flex-col w-full h-full">
                         {loading ?
                             (<div className="flex justify-center"><Loader /></div>)
                             : (blogs?.length == 0) ?
-                                <div className="text-center">Blogs are not available</div> :
+                                <div className="flex justify-center items-center h-full w-full">Blogs are not available</div> :
                                 <>
                                     <Typography variant="h5">All from {user?.userName}</Typography>
                                     <BlogsList blogs={blogs} />
                                 </>}
                     </div>
-                    {!loading && <div className="flex flex-col items-end mt-14 gap-2">
+                    {!loading && <div className="flex flex-col items-end mt-14 gap-2 static md:sticky top-40">
                         <a href={`mailto:${user?.email}`} className="text-xl underline">{user?.email}</a>
                         <Typography variant="h4" color="#1976D2" className="font-extrabold capitalize">{(user?.userName && user?.userName?.length > 10) ? user.userName.slice(0, 10) + "..." : user?.userName}</Typography>
-                        <img src={user?.userImage} alt="" className="w-72 rounded-lg border-1 border-[#c7c7c7]" />
+                        <img src={user?.userImage} alt="" className="w-72 rounded-lg border-1 border-[#c7c7c7]  object-cover" />
                     </div>}
                 </div>
             </div>

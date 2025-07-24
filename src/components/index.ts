@@ -9,5 +9,6 @@ import BlogCard from "./BlogCard";
 import BlogsList from "./BlogsList";
 import EditBlogModal from "./EditBlogModal";
 import EditNameModal from "./EditNameModal";
+import UpdatePassword from "./UpdatePassword";
 
-export { Header, Title, MyInput, SignupForm, LoginForm, Loader, PublishBlogForm, BlogCard, BlogsList, EditBlogModal, EditNameModal };
+export { Header, Title, MyInput, SignupForm, LoginForm, Loader, PublishBlogForm, BlogCard, BlogsList, EditBlogModal, EditNameModal, UpdatePassword };

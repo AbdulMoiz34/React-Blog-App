@@ -67,3 +67,14 @@ export default tseslint.config([
   },
 ])
 ```
+
+
+<h1>Technologies</h1>
+Antdesign
+Material UI
+Tailwind CSS
+Axios
+react-router-dom
+react-hot-toast
+date-fns
+usehooks

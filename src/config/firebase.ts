@@ -1,5 +1,14 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signOut, signInWithEmailAndPassword } from "firebase/auth";
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut,
+    signInWithEmailAndPassword,
+    EmailAuthProvider,
+    reauthenticateWithCredential,
+    updatePassword
+} from "firebase/auth";
 import {
     getFirestore,
     addDoc,
@@ -52,5 +61,8 @@ export {
     orderBy,
     onSnapshot,
     getDocs,
-    Timestamp
+    Timestamp,
+    EmailAuthProvider,
+    reauthenticateWithCredential,
+    updatePassword
 }

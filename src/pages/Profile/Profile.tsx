@@ -1,7 +1,7 @@
 import { useContext, useRef, useState } from "react";
 import { EditOutlined, CameraOutlined } from "@ant-design/icons";
 import AuthContext from "../../context/AuthContext";
-import { EditNameModal, Title } from "../../components";
+import { EditNameModal, Title, UpdatePassword } from "../../components";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { doc, db, updateDoc } from "../../config/firebase";
@@ -12,6 +12,7 @@ export default function Profile() {
     const fileInpRef = useRef<HTMLInputElement | null>(null);
     const [image, setImage] = useState<string>(user?.userImage ?? "");
     const [isEditOpen, setIsEditOpen] = useState(false);
+    const [name, setName] = useState<string>(user?.userName ?? "Your Name");
 
     const handleInputClick = () => fileInpRef?.current?.click();
 
@@ -44,6 +45,10 @@ export default function Profile() {
         }
     }
 
+    const onUpdate = (name: string) => {
+        setName(name);
+    }
+
     return (
         <>
             <Title text="Profile" />
@@ -54,7 +59,7 @@ export default function Profile() {
                         alt="Your Image"
                         className="w-full h-full object-cover rounded-full border-4 border-purple-300"
                     />
-                    <input type="file" className="hidden" ref={fileInpRef} onChange={uploadImage} />
+                    <input type="file" accept="image/*" className="hidden" ref={fileInpRef} onChange={uploadImage} />
                     <button
                         onClick={handleInputClick}
                         className="absolute bottom-2 w-10 h-10 cursor-pointer right-2 bg-purple-600 text-white p-2 rounded-full hover:bg-purple-700 transition"
@@ -65,34 +70,13 @@ export default function Profile() {
                 </div>
 
                 <div className="flex items-center justify-center space-x-2 text-xl font-semibold text-gray-800">
-                    <span>{user?.userName || "Your Username"}</span>
+                    <span>{name}</span>
                     <button className="text-purple-600 hover:text-purple-800 cursor-pointer" title="Edit Username" onClick={() => setIsEditOpen(true)}>
                         <EditOutlined />
                     </button>
-                    <EditNameModal value={user?.userName ?? ""} open={isEditOpen} onCancel={() => setIsEditOpen(false)} />
+                    <EditNameModal value={name} open={isEditOpen} onCancel={() => setIsEditOpen(false)} onUpdate={onUpdate} />
                 </div>
-
-                <div className="space-y-4">
-                    <h2 className="text-lg font-semibold text-gray-700">Password</h2>
-                    <input
-                        type="password"
-                        placeholder="Old Password"
-                        className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
-                    />
-                    <input
-                        type="password"
-                        placeholder="New Password"
-                        className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
-                    />
-                    <input
-                        type="password"
-                        placeholder="Confirm Password"
-                        className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
-                    />
-                    <button className="cursor-pointer w-full py-2 bg-purple-600 text-white rounded hover:bg-purple-700 transition">
-                        Update Password
-                    </button>
-                </div>
+                <UpdatePassword />
             </div>
         </>
     );
