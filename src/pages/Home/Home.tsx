@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Title, Loader } from "../../components";
 import { Typography } from "antd";
-import { db, getDocs, collection, orderBy, query , Timestamp } from "../../config/firebase";
+import { db, getDocs, collection, orderBy, query, Timestamp } from "../../config/firebase";
 import { BlogsList } from "../../components";
 
 interface Blogs {
@@ -37,9 +37,21 @@ const Home = () => {
         getAllBlogs();
     }, []);
 
+    const hour = new Date().getHours();
+    let text = "";
+    if (hour >= 5 && hour < 12) {
+        text = "Good Morning!";
+    } else if (hour >= 12 && hour < 17) {
+        text = "Good Noon!";
+    } else if (hour >= 17 && hour <= 20) {
+        text = "Good Evening";
+    } else {
+        text = "Good Night!";
+    }
+    console.log(hour);
     return (
         <>
-            <Title text="Welcome Readers" />
+            <Title text={text} />
             <div className="flex justify-center pb-6">
                 <div className="w-4/5 flex items-center flex-col py-3">
                     <div className="mt-2 w-full flex flex-col gap-4">
