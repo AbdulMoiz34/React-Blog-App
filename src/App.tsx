@@ -1,6 +1,6 @@
 import { Toaster } from 'react-hot-toast';
 import './App.css'
-import { Header, Loader } from './components';
+import { Header, Loader, OfflineAlert } from './components';
 import Router from './AppRouter/Router';
 import AuthContext from './context/AuthContext/AuthContext';
 import { useEffect, useState } from 'react';
@@ -12,7 +12,6 @@ function App() {
   const [user, setUser] = useState<User | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState<boolean>(true);
-
   const authContextValue = {
     user,
     setUser,
@@ -23,6 +22,7 @@ function App() {
   };
 
   useEffect(() => {
+
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
 
       if (currentUser) {
@@ -51,22 +51,23 @@ function App() {
       }
       setLoading(false);
     });
+
     return () => unsubscribe();
   }, []);
 
-
-  console.log("Loading user state...");
   if (loading) {
     return <div className="flex justify-center items-center h-screen">
       <Loader />
     </div>;
   }
+  console.log("heloo")
   return (
     <>
       <AuthContext value={authContextValue}>
         <Header />
         <Router />
       </AuthContext>
+      <OfflineAlert />
       <Toaster position='top-center' reverseOrder={false} />
     </>
   )

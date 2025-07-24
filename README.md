@@ -78,3 +78,5 @@ react-router-dom
 react-hot-toast
 date-fns
 usehooks
+firebase services (auth , firestore)
+cloudinary (to store images)

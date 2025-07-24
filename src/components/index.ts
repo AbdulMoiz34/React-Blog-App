@@ -10,5 +10,6 @@ import BlogsList from "./BlogsList";
 import EditBlogModal from "./EditBlogModal";
 import EditNameModal from "./EditNameModal";
 import UpdatePassword from "./UpdatePassword";
+import { OfflineAlert } from "./Alerts";
 
-export { Header, Title, MyInput, SignupForm, LoginForm, Loader, PublishBlogForm, BlogCard, BlogsList, EditBlogModal, EditNameModal, UpdatePassword };
+export { Header, Title, MyInput, SignupForm, LoginForm, Loader, PublishBlogForm, BlogCard, BlogsList, EditBlogModal, EditNameModal, UpdatePassword, OfflineAlert };

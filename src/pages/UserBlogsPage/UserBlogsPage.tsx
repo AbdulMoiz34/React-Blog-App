@@ -72,7 +72,7 @@ const UserBlogsPage = () => {
             </div>
             <div className="flex justify-center bg-[#F8F9FA]">
                 <div className="w-[90%] flex gap-8 mt-4 justify-start flex-col-reverse items-center md:items-start md:flex-row">
-                    <div className="flex flex-col w-full h-full">
+                    <div className="flex flex-col w-full h-full py-4">
                         {loading ?
                             (<div className="flex justify-center"><Loader /></div>)
                             : (blogs?.length == 0) ?
