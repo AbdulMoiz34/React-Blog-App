@@ -43,8 +43,7 @@ export default function SignupForm() {
             setTimeout(() => {
                 navigate("/dashboard");
             }, 700);
-        } catch (err) {
-            console.error("Error creating user:", err);
+        } catch (_err) {
             toast.error("Failed to create user");
         } finally {
             setLoading(false);

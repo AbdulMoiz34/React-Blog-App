@@ -29,8 +29,7 @@ const LoginForm = () => {
             setTimeout(() => {
                 navigate("/dashboard");
             }, 700);
-        } catch (err) {
-            console.error("Error logging in:", err);
+        } catch (_err) {
             toast.error("Failed to Login");
         } finally {
             setLoading(false);

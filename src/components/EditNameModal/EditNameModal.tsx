@@ -43,8 +43,7 @@ const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
                 error: "Something went wrong."
             })
             onUpdate(data.name);
-        } catch (err) {
-            console.log(err);
+        } catch (_err) {
             toast.error("Failed to update.");
         }
     }

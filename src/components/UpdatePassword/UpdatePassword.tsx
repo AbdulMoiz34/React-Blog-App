@@ -44,10 +44,9 @@ export default function UpdatePassword() {
             await updatePassword(user, newPassword);
             toast.success("Password updated successfully");
             reset();
-        } catch (error: any) {
+        } catch (_err) {
             toast.error("Failed to update.");
             setError("oldPassword", { message: "Your Old password should be correct." });
-            console.error("Failed to update password:", error.message);
         }
     };
 

@@ -35,8 +35,7 @@ const PublishBlogForm = () => {
             toast.success("Blog published successfully");
             
             reset();
-        } catch (err) {
-            console.log(err);
+        } catch (_err) {
             toast.error("Error publishing blog");
         } finally {
             setLoading(false);

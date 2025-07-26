@@ -40,7 +40,7 @@ export default function Profile() {
             })
             setImage(res.data.secure_url);
 
-        } catch (err) {
+        } catch (_err) {
             toast.error("something went wrong.");
         }
     }

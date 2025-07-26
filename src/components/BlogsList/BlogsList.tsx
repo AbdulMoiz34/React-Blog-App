@@ -38,7 +38,7 @@ const BlogsList = ({ blogs, page }: BlogsProps) => {
                 try {
                     await deleteDoc(doc(db, "blogs", id));
                     return toast.success(id + " deleted.");
-                } catch (error: unknown) {
+                } catch (err) {
                     toast.error("something went wrong.");
                 }
             },
@@ -63,8 +63,7 @@ const BlogsList = ({ blogs, page }: BlogsProps) => {
                 title: updatedBlog.title
             })
             return "updated.";
-        } catch (err) {
-            console.log(err);
+        } catch (_err) {
             toast.error("something went wrong.");
         }
     }

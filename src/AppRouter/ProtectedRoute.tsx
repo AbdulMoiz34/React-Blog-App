@@ -6,15 +6,14 @@ interface ProtectedRouteProps {
     children: React.ReactNode;
 }
 const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
-    console.log("ProtectedRoute rendered");
     const navigate = useNavigate();
     const { isAuthenticated } = useContext(AuthContext);
-    
+
     useEffect(() => {
         if (!isAuthenticated) {
             navigate("/login");
         }
-    }, [isAuthenticated]);
+    }, [isAuthenticated, navigate]);
     return (
         <>
             {children ? children : <Outlet />}

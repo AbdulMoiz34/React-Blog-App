@@ -15,7 +15,7 @@ interface Blog {
 }
 
 interface BlogCardProps {
-    deleteBlogHandler: (id: string) => {};
+    deleteBlogHandler: (id: string) => void;
     page?: string;
     blog: Blog;
     onEdit: (id: string, title: string, content: string) => void;
@@ -28,7 +28,7 @@ const BlogCard = ({ blog, deleteBlogHandler, onEdit, page }: BlogCardProps) => {
     if (publishedAt) {
         try {
             formattedDate = format(publishedAt?.toDate(), "MMMM do, yyyy");
-        } catch (_err: any) {
+        } catch (_err) {
             toast.error("something went wrong.");
         }
     }
@@ -46,7 +46,7 @@ const BlogCard = ({ blog, deleteBlogHandler, onEdit, page }: BlogCardProps) => {
             </div>
             <div className="mt-4">
                 <div>
-                    <Typography.Text style={{whiteSpace: "pre-line"}}>{content} </Typography.Text>
+                    <Typography.Text style={{ whiteSpace: "pre-line" }}>{content} </Typography.Text>
                 </div>
                 {page == "home" &&
                     <Link to={`/blogs/${userId}`}>

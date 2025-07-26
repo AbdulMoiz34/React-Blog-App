@@ -1,4 +1,4 @@
-import { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import './App.css'
 import { Header, Loader, OfflineAlert } from './components';
 import Router from './AppRouter/Router';
@@ -42,8 +42,8 @@ function App() {
             setUser(null);
             setIsAuthenticated(false);
           }
-        } catch (err) {
-          console.error("Error fetching user data:", err);
+        } catch (_err) {
+          toast.error("Failed to fetch user data.");
         }
       } else {
         setUser(null);
@@ -60,7 +60,7 @@ function App() {
       <Loader />
     </div>;
   }
-  console.log("heloo")
+
   return (
     <>
       <AuthContext value={authContextValue}>

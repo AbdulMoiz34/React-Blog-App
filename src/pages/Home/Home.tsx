@@ -27,10 +27,8 @@ const Home = () => {
             );
 
             const querySnapshot = await getDocs(q);
-            querySnapshot.forEach(doc => {
-                const blog = doc.data() as Blogs;
-                setBlogs((prevBlogs) => [...prevBlogs, blog]);
-            });
+            const blogsData: Blogs[] = querySnapshot.docs.map(doc => doc.data() as Blogs);
+            setBlogs(blogsData);
             setLoading(false);
         };
 
@@ -48,7 +46,7 @@ const Home = () => {
     } else {
         text = "Good Night!";
     }
-    console.log(hour);
+
     return (
         <>
             <Title text={text} />
